@@ -18,6 +18,12 @@ import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
 import { Route as LayoutSettingsRouteImport } from './routes/_layout/settings'
 import { Route as LayoutItemsRouteImport } from './routes/_layout/items'
 import { Route as LayoutAdminRouteImport } from './routes/_layout/admin'
+import { Route as LayoutCrmPipelineRouteImport } from './routes/_layout/crm/pipeline'
+import { Route as LayoutCrmNotesRouteImport } from './routes/_layout/crm/notes'
+import { Route as LayoutCrmDealsRouteImport } from './routes/_layout/crm/deals'
+import { Route as LayoutCrmContactsRouteImport } from './routes/_layout/crm/contacts'
+import { Route as LayoutCrmCompaniesRouteImport } from './routes/_layout/crm/companies'
+import { Route as LayoutCrmActivitiesRouteImport } from './routes/_layout/crm/activities'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -63,8 +69,39 @@ const LayoutAdminRoute = LayoutAdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutCrmPipelineRoute = LayoutCrmPipelineRouteImport.update({
+  id: '/crm/pipeline',
+  path: '/crm/pipeline',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutCrmNotesRoute = LayoutCrmNotesRouteImport.update({
+  id: '/crm/notes',
+  path: '/crm/notes',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutCrmDealsRoute = LayoutCrmDealsRouteImport.update({
+  id: '/crm/deals',
+  path: '/crm/deals',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutCrmContactsRoute = LayoutCrmContactsRouteImport.update({
+  id: '/crm/contacts',
+  path: '/crm/contacts',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutCrmCompaniesRoute = LayoutCrmCompaniesRouteImport.update({
+  id: '/crm/companies',
+  path: '/crm/companies',
+  getParentRoute: () => LayoutRoute,
+} as any)
+const LayoutCrmActivitiesRoute = LayoutCrmActivitiesRouteImport.update({
+  id: '/crm/activities',
+  path: '/crm/activities',
+  getParentRoute: () => LayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof LayoutIndexRoute
   '/login': typeof LoginRoute
   '/recover-password': typeof RecoverPasswordRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -72,7 +109,12 @@ export interface FileRoutesByFullPath {
   '/admin': typeof LayoutAdminRoute
   '/items': typeof LayoutItemsRoute
   '/settings': typeof LayoutSettingsRoute
-  '/': typeof LayoutIndexRoute
+  '/crm/activities': typeof LayoutCrmActivitiesRoute
+  '/crm/companies': typeof LayoutCrmCompaniesRoute
+  '/crm/contacts': typeof LayoutCrmContactsRoute
+  '/crm/deals': typeof LayoutCrmDealsRoute
+  '/crm/notes': typeof LayoutCrmNotesRoute
+  '/crm/pipeline': typeof LayoutCrmPipelineRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
@@ -83,6 +125,12 @@ export interface FileRoutesByTo {
   '/items': typeof LayoutItemsRoute
   '/settings': typeof LayoutSettingsRoute
   '/': typeof LayoutIndexRoute
+  '/crm/activities': typeof LayoutCrmActivitiesRoute
+  '/crm/companies': typeof LayoutCrmCompaniesRoute
+  '/crm/contacts': typeof LayoutCrmContactsRoute
+  '/crm/deals': typeof LayoutCrmDealsRoute
+  '/crm/notes': typeof LayoutCrmNotesRoute
+  '/crm/pipeline': typeof LayoutCrmPipelineRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -95,10 +143,17 @@ export interface FileRoutesById {
   '/_layout/items': typeof LayoutItemsRoute
   '/_layout/settings': typeof LayoutSettingsRoute
   '/_layout/': typeof LayoutIndexRoute
+  '/_layout/crm/activities': typeof LayoutCrmActivitiesRoute
+  '/_layout/crm/companies': typeof LayoutCrmCompaniesRoute
+  '/_layout/crm/contacts': typeof LayoutCrmContactsRoute
+  '/_layout/crm/deals': typeof LayoutCrmDealsRoute
+  '/_layout/crm/notes': typeof LayoutCrmNotesRoute
+  '/_layout/crm/pipeline': typeof LayoutCrmPipelineRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/login'
     | '/recover-password'
     | '/reset-password'
@@ -106,7 +161,12 @@ export interface FileRouteTypes {
     | '/admin'
     | '/items'
     | '/settings'
-    | '/'
+    | '/crm/activities'
+    | '/crm/companies'
+    | '/crm/contacts'
+    | '/crm/deals'
+    | '/crm/notes'
+    | '/crm/pipeline'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -117,6 +177,12 @@ export interface FileRouteTypes {
     | '/items'
     | '/settings'
     | '/'
+    | '/crm/activities'
+    | '/crm/companies'
+    | '/crm/contacts'
+    | '/crm/deals'
+    | '/crm/notes'
+    | '/crm/pipeline'
   id:
     | '__root__'
     | '/_layout'
@@ -128,6 +194,12 @@ export interface FileRouteTypes {
     | '/_layout/items'
     | '/_layout/settings'
     | '/_layout/'
+    | '/_layout/crm/activities'
+    | '/_layout/crm/companies'
+    | '/_layout/crm/contacts'
+    | '/_layout/crm/deals'
+    | '/_layout/crm/notes'
+    | '/_layout/crm/pipeline'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,7 +243,7 @@ declare module '@tanstack/react-router' {
     '/_layout': {
       id: '/_layout'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof LayoutRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -203,6 +275,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutAdminRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/crm/pipeline': {
+      id: '/_layout/crm/pipeline'
+      path: '/crm/pipeline'
+      fullPath: '/crm/pipeline'
+      preLoaderRoute: typeof LayoutCrmPipelineRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/crm/notes': {
+      id: '/_layout/crm/notes'
+      path: '/crm/notes'
+      fullPath: '/crm/notes'
+      preLoaderRoute: typeof LayoutCrmNotesRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/crm/deals': {
+      id: '/_layout/crm/deals'
+      path: '/crm/deals'
+      fullPath: '/crm/deals'
+      preLoaderRoute: typeof LayoutCrmDealsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/crm/contacts': {
+      id: '/_layout/crm/contacts'
+      path: '/crm/contacts'
+      fullPath: '/crm/contacts'
+      preLoaderRoute: typeof LayoutCrmContactsRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/crm/companies': {
+      id: '/_layout/crm/companies'
+      path: '/crm/companies'
+      fullPath: '/crm/companies'
+      preLoaderRoute: typeof LayoutCrmCompaniesRouteImport
+      parentRoute: typeof LayoutRoute
+    }
+    '/_layout/crm/activities': {
+      id: '/_layout/crm/activities'
+      path: '/crm/activities'
+      fullPath: '/crm/activities'
+      preLoaderRoute: typeof LayoutCrmActivitiesRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
@@ -211,6 +325,12 @@ interface LayoutRouteChildren {
   LayoutItemsRoute: typeof LayoutItemsRoute
   LayoutSettingsRoute: typeof LayoutSettingsRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
+  LayoutCrmActivitiesRoute: typeof LayoutCrmActivitiesRoute
+  LayoutCrmCompaniesRoute: typeof LayoutCrmCompaniesRoute
+  LayoutCrmContactsRoute: typeof LayoutCrmContactsRoute
+  LayoutCrmDealsRoute: typeof LayoutCrmDealsRoute
+  LayoutCrmNotesRoute: typeof LayoutCrmNotesRoute
+  LayoutCrmPipelineRoute: typeof LayoutCrmPipelineRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
@@ -218,6 +338,12 @@ const LayoutRouteChildren: LayoutRouteChildren = {
   LayoutItemsRoute: LayoutItemsRoute,
   LayoutSettingsRoute: LayoutSettingsRoute,
   LayoutIndexRoute: LayoutIndexRoute,
+  LayoutCrmActivitiesRoute: LayoutCrmActivitiesRoute,
+  LayoutCrmCompaniesRoute: LayoutCrmCompaniesRoute,
+  LayoutCrmContactsRoute: LayoutCrmContactsRoute,
+  LayoutCrmDealsRoute: LayoutCrmDealsRoute,
+  LayoutCrmNotesRoute: LayoutCrmNotesRoute,
+  LayoutCrmPipelineRoute: LayoutCrmPipelineRoute,
 }
 
 const LayoutRouteWithChildren =

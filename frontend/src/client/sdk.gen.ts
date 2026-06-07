@@ -3,7 +3,736 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { ItemsReadItemsData, ItemsReadItemsResponse, ItemsCreateItemData, ItemsCreateItemResponse, ItemsReadItemData, ItemsReadItemResponse, ItemsUpdateItemData, ItemsUpdateItemResponse, ItemsDeleteItemData, ItemsDeleteItemResponse, LoginLoginAccessTokenData, LoginLoginAccessTokenResponse, LoginTestTokenResponse, LoginRecoverPasswordData, LoginRecoverPasswordResponse, LoginResetPasswordData, LoginResetPasswordResponse, LoginRecoverPasswordHtmlContentData, LoginRecoverPasswordHtmlContentResponse, PrivateCreateUserData, PrivateCreateUserResponse, UsersReadUsersData, UsersReadUsersResponse, UsersCreateUserData, UsersCreateUserResponse, UsersReadUserMeResponse, UsersDeleteUserMeResponse, UsersUpdateUserMeData, UsersUpdateUserMeResponse, UsersUpdatePasswordMeData, UsersUpdatePasswordMeResponse, UsersRegisterUserData, UsersRegisterUserResponse, UsersReadUserByIdData, UsersReadUserByIdResponse, UsersUpdateUserData, UsersUpdateUserResponse, UsersDeleteUserData, UsersDeleteUserResponse, UtilsTestEmailData, UtilsTestEmailResponse, UtilsHealthCheckResponse } from './types.gen';
+import type { CrmActivitiesReadActivitiesData, CrmActivitiesReadActivitiesResponse, CrmActivitiesCreateActivityData, CrmActivitiesCreateActivityResponse, CrmActivitiesReadActivityData, CrmActivitiesReadActivityResponse, CrmActivitiesUpdateActivityData, CrmActivitiesUpdateActivityResponse, CrmActivitiesDeleteActivityData, CrmActivitiesDeleteActivityResponse, CrmCompaniesReadCompaniesData, CrmCompaniesReadCompaniesResponse, CrmCompaniesCreateCompanyData, CrmCompaniesCreateCompanyResponse, CrmCompaniesReadCompanyData, CrmCompaniesReadCompanyResponse, CrmCompaniesUpdateCompanyData, CrmCompaniesUpdateCompanyResponse, CrmCompaniesDeleteCompanyData, CrmCompaniesDeleteCompanyResponse, CrmContactsReadContactsData, CrmContactsReadContactsResponse, CrmContactsCreateContactData, CrmContactsCreateContactResponse, CrmContactsReadContactData, CrmContactsReadContactResponse, CrmContactsUpdateContactData, CrmContactsUpdateContactResponse, CrmContactsDeleteContactData, CrmContactsDeleteContactResponse, CrmDealsReadDealsData, CrmDealsReadDealsResponse, CrmDealsCreateDealData, CrmDealsCreateDealResponse, CrmDealsReadDealData, CrmDealsReadDealResponse, CrmDealsUpdateDealData, CrmDealsUpdateDealResponse, CrmDealsDeleteDealData, CrmDealsDeleteDealResponse, CrmNotesReadNotesData, CrmNotesReadNotesResponse, CrmNotesCreateNoteData, CrmNotesCreateNoteResponse, CrmNotesUpdateNoteData, CrmNotesUpdateNoteResponse, CrmNotesDeleteNoteData, CrmNotesDeleteNoteResponse, CrmTenantsCreateTenantData, CrmTenantsCreateTenantResponse, CrmTenantsReadTenantData, CrmTenantsReadTenantResponse, CrmTenantsUpdateTenantData, CrmTenantsUpdateTenantResponse, CrmTenantsAddMemberData, CrmTenantsAddMemberResponse, CrmTenantsRemoveMemberData, CrmTenantsRemoveMemberResponse, ItemsReadItemsData, ItemsReadItemsResponse, ItemsCreateItemData, ItemsCreateItemResponse, ItemsReadItemData, ItemsReadItemResponse, ItemsUpdateItemData, ItemsUpdateItemResponse, ItemsDeleteItemData, ItemsDeleteItemResponse, LoginLoginAccessTokenData, LoginLoginAccessTokenResponse, LoginTestTokenResponse, LoginRecoverPasswordData, LoginRecoverPasswordResponse, LoginResetPasswordData, LoginResetPasswordResponse, LoginRecoverPasswordHtmlContentData, LoginRecoverPasswordHtmlContentResponse, PrivateCreateUserData, PrivateCreateUserResponse, UsersReadUsersData, UsersReadUsersResponse, UsersCreateUserData, UsersCreateUserResponse, UsersReadUserMeResponse, UsersDeleteUserMeResponse, UsersUpdateUserMeData, UsersUpdateUserMeResponse, UsersUpdatePasswordMeData, UsersUpdatePasswordMeResponse, UsersRegisterUserData, UsersRegisterUserResponse, UsersReadUserByIdData, UsersReadUserByIdResponse, UsersUpdateUserData, UsersUpdateUserResponse, UsersDeleteUserData, UsersDeleteUserResponse, UtilsTestEmailData, UtilsTestEmailResponse, UtilsHealthCheckResponse } from './types.gen';
+
+export class CrmActivitiesService {
+    /**
+     * Read Activities
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.companyId
+     * @param data.dealId
+     * @param data.contactId
+     * @param data.completed
+     * @param data.skip
+     * @param data.limit
+     * @returns ActivitiesPublic Successful Response
+     * @throws ApiError
+     */
+    public static readActivities(data: CrmActivitiesReadActivitiesData): CancelablePromise<CrmActivitiesReadActivitiesResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/activities/',
+            query: {
+                company_id: data.companyId,
+                deal_id: data.dealId,
+                contact_id: data.contactId,
+                completed: data.completed,
+                skip: data.skip,
+                limit: data.limit,
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Create Activity
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns ActivityPublic Successful Response
+     * @throws ApiError
+     */
+    public static createActivity(data: CrmActivitiesCreateActivityData): CancelablePromise<CrmActivitiesCreateActivityResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/activities/',
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Read Activity
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns ActivityPublic Successful Response
+     * @throws ApiError
+     */
+    public static readActivity(data: CrmActivitiesReadActivityData): CancelablePromise<CrmActivitiesReadActivityResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/activities/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Update Activity
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns ActivityPublic Successful Response
+     * @throws ApiError
+     */
+    public static updateActivity(data: CrmActivitiesUpdateActivityData): CancelablePromise<CrmActivitiesUpdateActivityResponse> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/crm/activities/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Delete Activity
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static deleteActivity(data: CrmActivitiesDeleteActivityData): CancelablePromise<CrmActivitiesDeleteActivityResponse> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/crm/activities/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
+
+export class CrmCompaniesService {
+    /**
+     * Read Companies
+     * List all companies in the tenant. All roles can read.
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.skip
+     * @param data.limit
+     * @returns CRMCompaniesPublic Successful Response
+     * @throws ApiError
+     */
+    public static readCompanies(data: CrmCompaniesReadCompaniesData): CancelablePromise<CrmCompaniesReadCompaniesResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/companies/',
+            query: {
+                skip: data.skip,
+                limit: data.limit,
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Create Company
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns CRMCompanyPublic Successful Response
+     * @throws ApiError
+     */
+    public static createCompany(data: CrmCompaniesCreateCompanyData): CancelablePromise<CrmCompaniesCreateCompanyResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/companies/',
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Read Company
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns CRMCompanyPublic Successful Response
+     * @throws ApiError
+     */
+    public static readCompany(data: CrmCompaniesReadCompanyData): CancelablePromise<CrmCompaniesReadCompanyResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/companies/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Update Company
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns CRMCompanyPublic Successful Response
+     * @throws ApiError
+     */
+    public static updateCompany(data: CrmCompaniesUpdateCompanyData): CancelablePromise<CrmCompaniesUpdateCompanyResponse> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/crm/companies/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Delete Company
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static deleteCompany(data: CrmCompaniesDeleteCompanyData): CancelablePromise<CrmCompaniesDeleteCompanyResponse> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/crm/companies/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
+
+export class CrmContactsService {
+    /**
+     * Read Contacts
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.companyId
+     * @param data.skip
+     * @param data.limit
+     * @returns ContactsPublic Successful Response
+     * @throws ApiError
+     */
+    public static readContacts(data: CrmContactsReadContactsData): CancelablePromise<CrmContactsReadContactsResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/contacts/',
+            query: {
+                company_id: data.companyId,
+                skip: data.skip,
+                limit: data.limit,
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Create Contact
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns ContactPublic Successful Response
+     * @throws ApiError
+     */
+    public static createContact(data: CrmContactsCreateContactData): CancelablePromise<CrmContactsCreateContactResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/contacts/',
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Read Contact
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns ContactPublic Successful Response
+     * @throws ApiError
+     */
+    public static readContact(data: CrmContactsReadContactData): CancelablePromise<CrmContactsReadContactResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/contacts/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Update Contact
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns ContactPublic Successful Response
+     * @throws ApiError
+     */
+    public static updateContact(data: CrmContactsUpdateContactData): CancelablePromise<CrmContactsUpdateContactResponse> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/crm/contacts/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Delete Contact
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static deleteContact(data: CrmContactsDeleteContactData): CancelablePromise<CrmContactsDeleteContactResponse> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/crm/contacts/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
+
+export class CrmDealsService {
+    /**
+     * Read Deals
+     * All roles can read deals.
+     * Sales reps see all deals (read-only for others' deals).
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.companyId
+     * @param data.stage
+     * @param data.skip
+     * @param data.limit
+     * @returns DealsPublic Successful Response
+     * @throws ApiError
+     */
+    public static readDeals(data: CrmDealsReadDealsData): CancelablePromise<CrmDealsReadDealsResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/deals/',
+            query: {
+                company_id: data.companyId,
+                stage: data.stage,
+                skip: data.skip,
+                limit: data.limit,
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Create Deal
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns DealPublic Successful Response
+     * @throws ApiError
+     */
+    public static createDeal(data: CrmDealsCreateDealData): CancelablePromise<CrmDealsCreateDealResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/deals/',
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Read Deal
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns DealPublic Successful Response
+     * @throws ApiError
+     */
+    public static readDeal(data: CrmDealsReadDealData): CancelablePromise<CrmDealsReadDealResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/deals/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Update Deal
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns DealPublic Successful Response
+     * @throws ApiError
+     */
+    public static updateDeal(data: CrmDealsUpdateDealData): CancelablePromise<CrmDealsUpdateDealResponse> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/crm/deals/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Delete Deal
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static deleteDeal(data: CrmDealsDeleteDealData): CancelablePromise<CrmDealsDeleteDealResponse> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/crm/deals/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
+
+export class CrmNotesService {
+    /**
+     * Read Notes
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.companyId
+     * @param data.contactId
+     * @param data.dealId
+     * @param data.skip
+     * @param data.limit
+     * @returns NotesPublic Successful Response
+     * @throws ApiError
+     */
+    public static readNotes(data: CrmNotesReadNotesData): CancelablePromise<CrmNotesReadNotesResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/notes/',
+            query: {
+                company_id: data.companyId,
+                contact_id: data.contactId,
+                deal_id: data.dealId,
+                skip: data.skip,
+                limit: data.limit,
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Create Note
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns NotePublic Successful Response
+     * @throws ApiError
+     */
+    public static createNote(data: CrmNotesCreateNoteData): CancelablePromise<CrmNotesCreateNoteResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/notes/',
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Update Note
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns NotePublic Successful Response
+     * @throws ApiError
+     */
+    public static updateNote(data: CrmNotesUpdateNoteData): CancelablePromise<CrmNotesUpdateNoteResponse> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/crm/notes/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Delete Note
+     * @param data The data for the request.
+     * @param data.id
+     * @param data.tenantId Tenant UUID
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static deleteNote(data: CrmNotesDeleteNoteData): CancelablePromise<CrmNotesDeleteNoteResponse> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/crm/notes/{id}',
+            path: {
+                id: data.id
+            },
+            query: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
+
+export class CrmTenantsService {
+    /**
+     * Create Tenant
+     * Any authenticated user can create a tenant (they become admin).
+     * @param data The data for the request.
+     * @param data.requestBody
+     * @returns TenantPublic Successful Response
+     * @throws ApiError
+     */
+    public static createTenant(data: CrmTenantsCreateTenantData): CancelablePromise<CrmTenantsCreateTenantResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/tenants/',
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Read Tenant
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @returns TenantPublic Successful Response
+     * @throws ApiError
+     */
+    public static readTenant(data: CrmTenantsReadTenantData): CancelablePromise<CrmTenantsReadTenantResponse> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/api/v1/crm/tenants/{tenant_id}',
+            path: {
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Update Tenant
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns TenantPublic Successful Response
+     * @throws ApiError
+     */
+    public static updateTenant(data: CrmTenantsUpdateTenantData): CancelablePromise<CrmTenantsUpdateTenantResponse> {
+        return __request(OpenAPI, {
+            method: 'PUT',
+            url: '/api/v1/crm/tenants/{tenant_id}',
+            path: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Add Member
+     * @param data The data for the request.
+     * @param data.tenantId Tenant UUID
+     * @param data.requestBody
+     * @returns TenantMembershipPublic Successful Response
+     * @throws ApiError
+     */
+    public static addMember(data: CrmTenantsAddMemberData): CancelablePromise<CrmTenantsAddMemberResponse> {
+        return __request(OpenAPI, {
+            method: 'POST',
+            url: '/api/v1/crm/tenants/{tenant_id}/members',
+            path: {
+                tenant_id: data.tenantId
+            },
+            body: data.requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+    
+    /**
+     * Remove Member
+     * @param data The data for the request.
+     * @param data.userId
+     * @param data.tenantId Tenant UUID
+     * @returns Message Successful Response
+     * @throws ApiError
+     */
+    public static removeMember(data: CrmTenantsRemoveMemberData): CancelablePromise<CrmTenantsRemoveMemberResponse> {
+        return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/api/v1/crm/tenants/{tenant_id}/members/{user_id}',
+            path: {
+                user_id: data.userId,
+                tenant_id: data.tenantId
+            },
+            errors: {
+                422: 'Validation Error'
+            }
+        });
+    }
+}
 
 export class ItemsService {
     /**
