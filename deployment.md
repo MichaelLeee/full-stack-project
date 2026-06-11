@@ -350,3 +350,29 @@ Backend API docs: `https://api.staging.fastapi-project.example.com/docs`
 Backend API base URL: `https://api.staging.fastapi-project.example.com`
 
 Adminer: `https://adminer.staging.fastapi-project.example.com`
+
+### -------------
+## 1. Auto-select first org (simplest, zero config)
+  On app load, fetch /orgs and use the first one. No localStorage, no URL changes.
+  // On login:
+  const { items } = await apiClient.get("/orgs");
+  const defaultTenant = items[0].id;
+
+##  2. Seed a default org + match by slug
+  In crm_seed.sql, create an org with slug = 'default'. Frontend fetches by slug:
+  const org = await apiClient.get("/orgs/by-slug/default");
+
+  3. Cookie-based (backend sets, frontend reads automatically)
+  After login, backend sets a tenant_id cookie. Frontend never touches it — every API call carries it automatically.
+
+  4. URL-based routing (most robust for multi-tenant)
+  Routes like /org/acme/contacts. Tenant is in the URL, never needs storage:
+  /org/default/contacts  →  seed org
+  /org/{slug}/contacts   →  any org
+
+##  ---
+  Option 1 or 2 is enough for a seed/demo. Option 4 is the "real" solution if you plan to have multiple tenants. Which direction?
+
+NOTICE:  Seed data inserted successfully!
+NOTICE:  Tenant ID: deacee9e-af7b-4b07-8f5e-da40d2304f33
+NOTICE:  Set in browser: localStorage.setItem("tenant_id", "deacee9e-af7b-4b07-8f5e-da40d2304f33")
